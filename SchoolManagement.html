@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+
+
+
+
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+
+class Student extends Person {
+  constructor(name, age, grade) {
+    super(name, age);
+    this.grade = grade;
+  }
+
+  getDetails() {
+    return `${this.name}, Age: ${this.age}, Grade: ${this.grade}`;
+  }
+}
+
+
+class Teacher extends Person {
+  constructor(name, age, subject) {
+    super(name, age);
+    this.subject = subject;
+  }
+
+  getDetails() {
+    return `${this.name}, Age: ${this.age}, Subject: ${this.subject}`;
+  }
+}
+
+
+
+class School {
+  constructor(name) {
+    this.name = name;
+    this.students = [];
+    this.teachers = [];
+  }
+
+  addStudent(student) {
+    this.students.push(student);
+  }
+
+  addTeacher(teacher) {
+    this.teachers.push(teacher);
+  }
+
+  getAllStudents() {
+    return this.students.map((student) => student.getDetails());
+  }
+
+  getAllTeachers() {
+    return this.teachers.map((teacher) => teacher.getDetails());
+  }
+}
+
+
+
+const student = new Student("Alice", 14, "8th Grade");
+const teacher = new Teacher("Mr. Smith", 40, "Mathematics");
+
+console.log(student.getDetails()); 
+console.log(teacher.getDetails());
+
+
+class AdminInterface {
+  addStudentToSchool(school, student) {
+    school.addStudent(student);
+  }
+
+  addTeacherToSchool(school, teacher) {
+    school.addTeacher(teacher);
+  }
+}
+
+class ParentInterface {
+  viewStudentDetails(student) {
+    return student.getDetails();
+  }
+}
+
+
+class NotificationService {
+  sendNotification(message) {
+    throw new Error("Method not implemented.");
+  }
+}
+
+class EmailNotificationService extends NotificationService {
+  sendNotification(message) {
+    console.log(`Email sent: ${message}`);
+  }
+}
+
+const mySchool = new School("Greenfield Academy");
+const admin = new AdminInterface();
+const parent = new ParentInterface();
+
+admin.addStudentToSchool(mySchool, student);
+admin.addTeacherToSchool(mySchool, teacher);
+
+console.log("Students:", mySchool.getAllStudents());
+console.log("Teachers:", mySchool.getAllTeachers());
+
+const emailService = new EmailNotificationService();
+emailService.sendNotification("Welcome to Greenfield Academy!");
+
+console.log(parent.viewStudentDetails(student));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
